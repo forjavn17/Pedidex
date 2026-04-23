@@ -1162,7 +1162,61 @@ function exportarCSV() {
   a.href=u; a.download=`pedidex_${new Date().toISOString().slice(0,10)}.csv`; a.click(); URL.revokeObjectURL(u);
   toast('📥 CSV descargado','oro');
 }
+function renderAdmCfg() {
+  const w = document.getElementById('adm-tab-cfg');
 
+  w.innerHTML = `
+    <div class="form-grid">
+      <div>
+        <label>Nombre plataforma</label>
+        <input id="cfg-nombre" value="${esc(config.nombre || '')}">
+      </div>
+
+      <div>
+        <label>Slogan</label>
+        <input id="cfg-slogan" value="${esc(config.slogan || '')}">
+      </div>
+
+      <div>
+        <label>WhatsApp general</label>
+        <input id="cfg-wa" value="${esc(config.wa || '')}">
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <button class="btn btn-oro" onclick="guardarConfig()">
+        Guardar configuración
+      </button>
+
+      <button class="btn btn-rojo" onclick="adminBorrarHistorial()">
+        Borrar historial
+      </button>
+
+      <button class="btn btn-ghost" onclick="exportarCSV()">
+        Exportar CSV
+      </button>
+    </div>
+  `;
+}
+
+function togglePlanEmp(i) {
+  emprendedores[i].plan =
+    emprendedores[i].plan === 'pro' ? 'free' : 'pro';
+
+  guardarEmp();
+  renderAdmin();
+
+  toast(
+    `Plan cambiado a ${emprendedores[i].plan.toUpperCase()}`,
+    'oro'
+  );
+}
+
+function renderAdmin() {
+  renderAdmEmprend();
+  renderAdmHist();
+  renderAdmCfg();
+}
 /* ════════════════════════════════════════
    PANEL EMPRENDEDOR
 ════════════════════════════════════════ */
