@@ -1087,12 +1087,19 @@ function loginAdmin() {
   }
 }
 
+function admTab(el, tid) {
+  document.querySelectorAll('#view-admin .tab-btn')
+    .forEach(t => t.classList.remove('active'));
 
-función  admTab ( el , tid )  {
-  documento . querySelectorAll ( '#view-admin .tab-btn' ) . forEach ( t => t . classList . remove ( 'active' ) ) ;
-  el . classList . add ( 'active' ) ;
-  [ 'adm-tab-emprend' , 'adm-tab-hist' , 'adm-tab-cfg' ] . forEach ( id => document . getElementById ( id ) . classList . toggle ( 'hidden' , id !== tid ) ) ;
+  el.classList.add('active');
+
+  ['adm-tab-emprend', 'adm-tab-hist', 'adm-tab-cfg']
+    .forEach(id =>
+      document.getElementById(id)
+        .classList.toggle('hidden', id !== tid)
+    );
 }
+
 function renderAdmEmprend() {
   const w = document.getElementById('adm-tab-emprend');
   w.innerHTML = emprendedores.length ? emprendedores.map((e, i) => {
