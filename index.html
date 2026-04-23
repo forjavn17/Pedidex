@@ -1086,19 +1086,12 @@ function loginAdmin() {
     document.getElementById('adm-pass').value='';
   }
 }
-function renderAdmin() {
-  document.getElementById('adm-emprend').textContent = emprendedores.length;
-  document.getElementById('adm-prods').textContent   = emprendedores.reduce((a,e)=>a+e.productos.length,0);
-  document.getElementById('adm-pedidos').textContent = historial.length;
-  renderAdmEmprend(); renderAdmHist();
-  document.getElementById('cfg-nombre').value = config.nombre;
-  document.getElementById('cfg-slogan').value = config.slogan;
-  document.getElementById('cfg-wa').value     = config.wa;
+
 }
-function admTab(el,tid) {
-  document.querySelectorAll('#view-admin .tab-btn').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
-  ['adm-tab-emprend','adm-tab-hist','adm-tab-cfg'].forEach(id=>document.getElementById(id).classList.toggle('hidden',id!==tid));
+función  admTab ( el , tid )  {
+  documento . querySelectorAll ( '#view-admin .tab-btn' ) . forEach ( t => t . classList . remove ( 'active' ) ) ;
+  el . classList . add ( 'active' ) ;
+  [ 'adm-tab-emprend' , 'adm-tab-hist' , 'adm-tab-cfg' ] . forEach ( id => document . getElementById ( id ) . classList . toggle ( 'hidden' , id !== tid ) ) ;
 }
 function renderAdmEmprend() {
   const w = document.getElementById('adm-tab-emprend');
